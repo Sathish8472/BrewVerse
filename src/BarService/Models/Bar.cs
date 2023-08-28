@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BarService.Models
+namespace BarService.API.Models
 {
     public class Bar
     {

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerService", "src\BeerService\BeerService.csproj", "{91B0EFCE-E518-4BF9-91C8-0BA861070D3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerService.API", "src\BeerService\BeerService.API.csproj", "{91B0EFCE-E518-4BF9-91C8-0BA861070D3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarService", "src\BarService\BarService.csproj", "{473A9646-34F9-4CD9-8C55-ABD89D026A15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarService.API", "src\BarService\BarService.API.csproj", "{473A9646-34F9-4CD9-8C55-ABD89D026A15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreweryService", "src\BreweryService\BreweryService.csproj", "{8C80EF10-AD58-405A-A39F-253DBD2BE1DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BreweryService.API", "src\BreweryService\BreweryService.API.csproj", "{8C80EF10-AD58-405A-A39F-253DBD2BE1DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

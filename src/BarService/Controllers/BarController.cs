@@ -1,9 +1,8 @@
-﻿using BarService.Models;
-using BarService.Services;
-using Microsoft.AspNetCore.Http;
+﻿using BarService.API.Models;
+using BarService.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BarService.Controllers
+namespace BarService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

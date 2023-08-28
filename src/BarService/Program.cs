@@ -1,20 +1,27 @@
+using BarService.API.Data;
+using BarService.API.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using BarService.Data;
+using Microsoft.OpenApi.Models;
+
+using static BarService.API.Config.ServicesConfig;
+using static BarService.API.Config.PipelineConfig;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddDbContext<BarDbContext>(options =>
-{
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+// Configuration setup
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
+// Add services to the container
+ConfigureServices(builder.Services, configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-app.UseHttpsRedirection();
-
-app.MapGet("/", () => "Welcome to BarService!");
+// Configure the HTTP request pipeline
+ConfigurePipeline(app, app.Environment);
 
 app.Run();
+
+

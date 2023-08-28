@@ -1,34 +1,51 @@
+using BeerService.API.Data;
+using BeerService.API.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configuration setup
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
+builder.Services.AddControllers();
+
+// Configure services and dependency injection
+builder.Services.AddDbContext<BeerDbContext>(options =>
+{
+    options.UseSqlite(configuration.GetConnectionString("DefaultConnection")); // Use SQLite database
+});
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BeerService API", Version = "v1" });
+});
+
+builder.Services.AddScoped<IBeerService, BeerService.API.Services.BeerService>(); // Add the BeerService with scoped lifetime
+
+// Add additional services here if needed
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage(); // Show detailed error page in development
+}
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+// Configure Swagger
+app.UseSwagger(); // Enable Swagger JSON endpoint
+app.UseSwaggerUI(c =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BeerService API V1"); // Configure Swagger UI
+    c.RoutePrefix = string.Empty; // Serve Swagger UI at the root URL
 });
 
-app.Run();
+app.MapControllers(); // Map controllers to the application
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+app.Run();

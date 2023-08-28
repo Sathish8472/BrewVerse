@@ -1,9 +1,9 @@
-﻿using BarService.Models;
+﻿using BarService.API.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
-namespace BarService.Data
+namespace BarService.API.Data
 {
     public class BarDbContext : DbContext
     {

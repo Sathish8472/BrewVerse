@@ -1,6 +1,6 @@
-﻿using BarService.Models;
+﻿using BarService.API.Models;
 
-namespace BarService.Services
+namespace BarService.API.Services
 {
     public interface IBarService
     {

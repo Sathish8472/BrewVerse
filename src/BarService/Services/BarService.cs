@@ -1,8 +1,8 @@
-﻿using BarService.Data;
-using BarService.Models;
+﻿using BarService.API.Data;
+using BarService.API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BarService.Services
+namespace BarService.API.Services
 {
     public class BarService : IBarService
     {
