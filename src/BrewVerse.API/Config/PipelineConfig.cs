@@ -7,11 +7,11 @@
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger(); // Enable Swagger JSON endpoint
+                app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BrewVerse API V1"); // Configure Swagger UI
-                    c.RoutePrefix = string.Empty; // Serve Swagger UI at the root URL
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BrewVerse API V1"); 
+                    c.RoutePrefix = string.Empty; 
                 });
             }
 
